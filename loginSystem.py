@@ -1,5 +1,6 @@
 import pymysql
 from tkinter import *
+from tkinter import messagebox
 
 try:
     fp = open("database_details.txt","r")
@@ -50,11 +51,11 @@ class LoginPage():
         curs.execute(sqlQuery)
         passwordA = curs.fetchone()
         if not passwordA:
-            print("Invalid Username")
+            messagebox.showerror(title='Error', message='Invalid Username')
         elif passwordA[0] != passwordB:
-            print("Invalid Password")
+            messagebox.showerror(title='Error', message='Invalid Password')
         else:
-            print("Login Successful")
+            messagebox.showinfo(title='Success', message='Login Successful')
             conn.close()
             self.master.destroy()
             self.socialmedia.enter()
@@ -66,7 +67,7 @@ class LoginPage():
         curs.execute(sqlQuery)
         conn.commit()
         self.socialmedia.name = username
-        print("Registration Successful")
+        messagebox.showinfo(title='Success', message='Registration Successful')
         conn.close()
         self.master.destroy()
         self.socialmedia.enter()

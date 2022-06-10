@@ -81,9 +81,19 @@ class SocialMedia(object):
             c = Radiobutton(self.formatFrame, text=format[0], variable=formatname, value=format[0], indicatoron=0)
             c.pack(fill=X)
 
+        back_button = Button(self.formatFrame, text="Back", command=self.goback)
+        back_button.config(bg="red2")
+        back_button.pack(side=BOTTOM)
+        back_button.pack()
+
         proceed_button = Button(self.formatFrame, text="Choose format", command=lambda: self.print_selection(formatname))
         proceed_button.config(bg="green3")
         proceed_button.pack(side=BOTTOM)
+
+    def goback(self):
+        self.formatFrame.destroy()
+        self.socialFrame.destroy()
+        self.displaySocialMedia()
 
     def print_selection(self,format):
         self.name = format.get()
