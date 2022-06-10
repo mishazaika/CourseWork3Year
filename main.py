@@ -33,7 +33,7 @@ class SocialMedia(object):
         for widget in self.master.winfo_children():
             widget.destroy()
 
-        label_heading = Canvas(self.master, width=370,height=140)
+        label_heading = Canvas(self.master, width=370,height=100)
         label_heading.pack()
         label_heading.create_text(180, 70, fill="black", text="Top 3 Social Media", font=("Times", 20, "bold italic"))
 
