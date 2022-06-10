@@ -3,15 +3,15 @@ import lxml.html as lh
 import pandas as pd
 from IPython.display import display
 
-url1 = 'https://hotinsocialmedia.com/most-followed-instagram-accounts/'  # Instagram
-url2 = ''  # Youtube
-url3 = ''  # TikTok
-page = requests.get(url1)  # Store the contents of the website under doc
+url1 = 'https://hotinsocialmedia.com/most-followed-instagram-accounts/'  # Instagram -> len(T) != 5: break
+url2 = 'https://hypeauditor.com/top-youtube/'  # Youtube -> len(T) != 10: break
+url3 = 'https://en.wikipedia.org/wiki/List_of_most-followed_TikTok_accounts'  # TikTok len(T) != 8: break
+page = requests.get(url2)  # Store the contents of the website under doc
 doc = lh.fromstring(page.content)  # Parse data that are stored between <tr>..</tr> of HTML
 tr_elements = doc.xpath('//tr')
 
 # Check the length of the first 12 rows
-[len(T) for T in tr_elements[:5]]
+[len(T) for T in tr_elements[:12]]
 
 tr_elements = doc.xpath('//tr')  # Create empty list
 col = []
@@ -30,7 +30,7 @@ for j in range(1, len(tr_elements)):
     T = tr_elements[j]
 
     # If row is not of size 10, the //tr data is not from our table
-    if len(T) != 5:
+    if len(T) != 10:
         break
 
     # i is the index of our column
