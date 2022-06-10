@@ -1,6 +1,7 @@
 import pymysql
 from tkinter import *
 from tkinter import messagebox
+from pymysql.err import Error
 
 try:
     fp = open("database_details.txt","r")
@@ -63,14 +64,16 @@ class LoginPage():
     def reg(self):
         username = self.master.entry_username.get()
         password = self.master.entry_password.get()
-        sqlQuery = "INSERT INTO login_details VALUES("+repr(username)+", "+repr(password)+")"
-        curs.execute(sqlQuery)
-        conn.commit()
-        self.socialmedia.name = username
-        messagebox.showinfo(title='Success', message='Registration Successful')
-        conn.close()
-        self.master.destroy()
-        self.socialmedia.enter()
+        try:
+            sqlQuery = "INSERT INTO login_details VALUES("+repr(username)+", "+repr(password)+")"
+            curs.execute(sqlQuery)
+            conn.commit()
+            messagebox.showinfo(title='Success', message='Registration Successful')
+            conn.close()
+            self.master.destroy()
+            self.socialmedia.enter()
+        except Error as e:
+            messagebox.showerror(title='Error', message='Such User already exists')
 
     def register(self):
         for widget in self.master.winfo_children():
