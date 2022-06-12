@@ -89,5 +89,5 @@ class LoginPage():
         self.master.label_password.grid(row=2, column=0, sticky=E)
         self.master.entry_password.grid(row=2, column=1)
 
-        register_button = Button(self.master, text="register", command=self.reg)
+        register_button = Button(self.master, text="Register", command=self.reg)
         register_button.grid(columnspan=2)

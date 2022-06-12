@@ -16,13 +16,12 @@ class SocialMedia(object):
     def __init__(self, master):
         self.name = None
         self.master = master
-
         welcome_canvas = Canvas(master, width=370,height=140)
         welcome_canvas.pack()
-        welcome_canvas.create_text(180, 70, fill="blue", text="WELLCOME TO \n WEB SCRAPER", font=("Times", 20, "bold italic"))
+        welcome_canvas.create_text(180, 70, fill='#856ff8', text="WELLCOME TO \n WEB SCRAPER", font=("Times", 20, "bold italic"))
 
-        login_button = Button(master, text="Login", command=self.login)
-        login_button.config(width=360, pady=3, bd=5, fg="green", relief=GROOVE, font="SNAS 40")
+        login_button = Button(master, image=login, borderwidth=1, command=self.login)
+        login_button.config(width=600, pady=30, bd=0, fg="green", relief=GROOVE, font="SNAS 40")
         login_button.pack()
 
     def login(self):
@@ -35,7 +34,7 @@ class SocialMedia(object):
 
         label_heading = Canvas(self.master, width=370,height=100)
         label_heading.pack()
-        label_heading.create_text(180, 70, fill="black", text="Top 3 Social Media", font=("Times", 20, "bold italic"))
+        label_heading.create_text(180, 70, fill='#856ff8', text="Top 3 Social Media", font=("Times", 20, "bold italic"))
 
         self.menuFrame = Frame(self.master)
         self.menuFrame.config(width=360, relief=GROOVE, bd=1)
@@ -55,8 +54,7 @@ class SocialMedia(object):
         for socialmedia in socialmedias:
             b = Radiobutton(self.socialFrame, text=socialmedia[0], variable=socialname, value=socialmedia[0], indicatoron=0)
             b.pack(fill=X)
-        self.proceed_button = Button(self.socialFrame, text="Export", command=lambda: self.exportformat(socialname))
-        self.proceed_button.config(bg="green3")
+        self.proceed_button = Button(self.socialFrame, image=export, borderwidth=0, command=lambda: self.exportformat(socialname))
         self.proceed_button.pack(side=BOTTOM)
 
     def exportformat(self, socialmedia):
@@ -81,13 +79,11 @@ class SocialMedia(object):
             c = Radiobutton(self.formatFrame, text=format[0], variable=formatname, value=format[0], indicatoron=0)
             c.pack(fill=X)
 
-        back_button = Button(self.formatFrame, text="Back", command=self.goback)
-        back_button.config(bg="red2")
+        back_button = Button(self.formatFrame, image=back, borderwidth=0, command=self.goback)
         back_button.pack(side=BOTTOM)
         back_button.pack()
 
-        proceed_button = Button(self.formatFrame, text="Choose format", command=lambda: self.print_selection(formatname))
-        proceed_button.config(bg="green3")
+        proceed_button = Button(self.formatFrame, image=choose, borderwidth=0, command=lambda: self.print_selection(formatname))
         proceed_button.pack(side=BOTTOM)
 
     def goback(self):
@@ -344,6 +340,10 @@ if __name__ == "__main__":
     url1 = 'https://hotinsocialmedia.com/most-followed-instagram-accounts/'
     url2 = 'https://en.wikipedia.org/wiki/List_of_most-followed_TikTok_accounts'
     url3 = 'https://hypeauditor.com/top-youtube/'
+    login = PhotoImage(file='Login.png')
+    export = PhotoImage(file='Export.png')
+    back = PhotoImage(file='Back.png')
+    choose = PhotoImage(file='ChooseFormat.png')
     mainFrame = Frame(root)
     mainFrame.pack()
     f = Facade(master=mainFrame)
