@@ -8,10 +8,6 @@ url2 = 'https://hypeauditor.com/top-youtube/'  # Youtube -> len(T) != 10: break
 url3 = 'https://en.wikipedia.org/wiki/List_of_most-followed_TikTok_accounts'  # TikTok len(T) != 8: break
 page = requests.get(url2)  # Store the contents of the website under doc
 doc = lh.fromstring(page.content)  # Parse data that are stored between <tr>..</tr> of HTML
-tr_elements = doc.xpath('//tr')
-
-# Check the length of the first 12 rows
-[len(T) for T in tr_elements[:12]]
 
 tr_elements = doc.xpath('//tr')  # Create empty list
 col = []
